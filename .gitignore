@@ -7,4 +7,7 @@ dataset/eeg_data/deap/*
 dataset/eeg_data/dreamer/*
 dataset/eeg_data/seed/*
 dataset/processed_data/*
-models/client/*
+models/client/*/*.pkl
+models/client/*/*.ckpt
+
+!**/.gitkeep
