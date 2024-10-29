@@ -1,0 +1,10 @@
+__pycache__
+.ipynb_checkpoints
+multirun
+outputs
+figures
+dataset/eeg_data/deap/*
+dataset/eeg_data/dreamer/*
+dataset/eeg_data/seed/*
+dataset/processed_data/*
+models/client/*

@@ -1,0 +1,21 @@
+# federated training configuration
+batch_size: 64  # training batch size
+test_ratio: 0.2  # ratio of val/test data
+num_rounds: 30  # number of communication rounds
+overlap_percent: 0  # (DO NOT CHANGE) percentage of data overlap in EEG segments
+
+# server model configuration
+model_type: vit  # type of server model (fbccnn, ccnn, vit, simplevit)
+seed: 1  # reproducibility (1, 2, 3, 4, 5)
+
+# client training configuration (knowledge distillation)
+config_fit:
+  mode: offline  # mode of distillation (offline, online)
+  lr: 0.00001  # learning rate
+  local_epochs: 1  # number of local epochs in each client
+  temperature: 1  # temperature for distillation
+  alpha: 0  # weight for distillation loss (from 0 to 1)
+
+# hardware configuration
+num_cpus: 1  # number of CPU cores a client would get
+num_gpus: 0  # ratio of GPU memory a client gets assigned
