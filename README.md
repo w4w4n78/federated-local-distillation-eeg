@@ -32,7 +32,7 @@ pip install 'scipy<1.13'
 * SEED: Download the dataset from [here](https://bcmi.sjtu.edu.cn/home/seed/index.html) and put the `Preprocessed_EEG` folder to `dataset/eeg_data/seed`
 * DREAMER: Download the dataset from [here](https://zenodo.org/records/546113#.Wi_vFjXSOGU) and put the `DREAMER.mat` file to `dataset/eeg_data/dreamer`
 
-3. Run `python dataset.py` to prepare raw normalized and grid EEG data for each dataset from `dataset/eeg_data` to `dataset/processed_data`.
+3. Run `python dataset.py` to prepare raw normalized and grid EEG data for each dataset from `dataset/eeg_data` to `dataset/processed_data`. You can download the processed data from [Google Drive](https://drive.google.com/file/d/1mcL0JF2bvbt_YthHOVs1Nh2u4rKezqph/view?usp=sharing).
 
 4. Run `python pretrain.py` to pre-train teacher models for each dataset ([see below for more detail](#pretrain)). Make sure to put the models in `models/client`. If you don't want to train by yourself, you can download the pre-trained models from [Google Drive](https://drive.google.com/file/d/1Fe7MXpTxPCLPspKFSK5PN1xzvEPtACN4/view?usp=sharing).
 
