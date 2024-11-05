@@ -242,7 +242,7 @@ def prepare_dataset(
 
         deap = DEAPDataset(
             io_path=f"dataset/processed_data/deap_raw_normalized_{overlap_name}",
-            root_path="dataset/eeg_data/deap/data_preprocessed_python",
+            root_path="../../../../EEG/Dataset/DEAP/data_preprocessed_python",
             overlap=int(overlap * 128),  # 0, 32, 64, 96
             offline_transform=transforms.Compose(
                 [
@@ -260,7 +260,7 @@ def prepare_dataset(
         if class_type == "binary":
             seed = SEEDBinaryDataset(
                 io_path=f"dataset/processed_data/seed_binary_raw_normalized_{overlap_name}",
-                root_path="dataset/eeg_data/seed/SEED_EEG/Preprocessed_EEG/",
+                root_path="../../../../EEG/Dataset/SEED/SEED/SEED_EEG/Preprocessed_EEG/",
                 overlap=int(overlap * 200),  # 0, 50, 100, 150
                 offline_transform=transforms.Compose(
                     [
@@ -277,7 +277,7 @@ def prepare_dataset(
         elif class_type == "ternary":
             seed = SEEDDataset(
                 io_path=f"dataset/processed_data/seed_raw_normalized_{overlap_name}",
-                root_path="dataset/eeg_data/seed/SEED_EEG/Preprocessed_EEG/",
+                root_path="../../../../EEG/Dataset/SEED/SEED/SEED_EEG/Preprocessed_EEG/",
                 overlap=int(overlap * 200),  # 0, 50, 100, 150
                 offline_transform=transforms.Compose(
                     [
@@ -293,7 +293,7 @@ def prepare_dataset(
 
         dreamer = DREAMERDataset(
             io_path=f"dataset/processed_data/dreamer_raw_normalized_{overlap_name}",
-            mat_path="dataset/eeg_data/dreamer/DREAMER.mat",
+            mat_path="../../../../EEG/Dataset/DREAMER/DREAMER.mat",
             overlap=int(overlap * 128),  # 0, 32, 64, 96
             offline_transform=transforms.Compose(
                 [
@@ -310,7 +310,7 @@ def prepare_dataset(
     elif feature_type == "de_grid":
         deap = DEAPDataset(
             io_path=f"dataset/processed_data/deap_de_grid_{overlap_name}",
-            root_path="dataset/eeg_data/deap/data_preprocessed_python",
+            root_path="../../../../EEG/Dataset/DEAP/data_preprocessed_python",
             overlap=int(overlap * 128),  # 0, 32, 64, 96
             offline_transform=transforms.Compose(
                 [
@@ -335,7 +335,7 @@ def prepare_dataset(
         if class_type == "binary":
             seed = SEEDBinaryDataset(
                 io_path=f"dataset/processed_data/seed_binary_de_grid_{overlap_name}",
-                root_path="dataset/eeg_data/seed/SEED_EEG/Preprocessed_EEG/",
+                root_path="../../../../EEG/Dataset/SEED/SEED/SEED_EEG/Preprocessed_EEG/",
                 overlap=int(overlap * 200),  # 0, 50, 100, 150
                 offline_transform=transforms.Compose(
                     [
@@ -353,7 +353,7 @@ def prepare_dataset(
         elif class_type == "ternary":
             seed = SEEDDataset(
                 io_path=f"dataset/processed_data/seed_de_grid_{overlap_name}",
-                root_path="dataset/eeg_data/seed/SEED_EEG/Preprocessed_EEG/",
+                root_path="../../../../EEG/Dataset/SEED/SEED/SEED_EEG/Preprocessed_EEG/",
                 overlap=int(overlap * 200),  # 0, 50, 100, 150
                 offline_transform=transforms.Compose(
                     [
@@ -370,7 +370,7 @@ def prepare_dataset(
 
         dreamer = DREAMERDataset(
             io_path=f"dataset/processed_data/dreamer_de_grid_{overlap_name}",
-            mat_path="dataset/eeg_data/dreamer/DREAMER.mat",
+            mat_path="../../../../EEG/Dataset/DREAMER/DREAMER.mat",
             overlap=int(overlap * 128),  # 0, 32, 64, 96
             offline_transform=transforms.Compose(
                 [
@@ -388,7 +388,7 @@ def prepare_dataset(
     elif feature_type == "de_interpolated_grid":
         deap = DEAPDataset(
             io_path="dataset/processed_data/deap_de_interpolated_grid",
-            root_path="dataset/eeg_data/deap/data_preprocessed_python",
+            root_path="../../../../EEG/Dataset/DEAP/data_preprocessed_python",
             offline_transform=transforms.Compose(
                 [
                     transforms.BandDifferentialEntropy(apply_to_baseline=True),
@@ -412,7 +412,7 @@ def prepare_dataset(
         if class_type == "binary":
             seed = SEEDBinaryDataset(
                 io_path="dataset/processed_data/seed_binary_de_interpolated_grid",
-                root_path="dataset/eeg_data/seed/SEED_EEG/Preprocessed_EEG/",
+                root_path="../../../../EEG/Dataset/SEED/SEED/SEED_EEG/Preprocessed_EEG/",
                 offline_transform=transforms.Compose(
                     [
                         transforms.BandDifferentialEntropy(),
@@ -429,7 +429,7 @@ def prepare_dataset(
         elif class_type == "ternary":
             seed = SEEDDataset(
                 io_path="dataset/processed_data/seed_de_interpolated_grid",
-                root_path="dataset/eeg_data/seed/SEED_EEG/Preprocessed_EEG/",
+                root_path="../../../../EEG/Dataset/SEED/SEED/SEED_EEG/Preprocessed_EEG/",
                 offline_transform=transforms.Compose(
                     [
                         transforms.BandDifferentialEntropy(),
@@ -445,7 +445,7 @@ def prepare_dataset(
 
         dreamer = DREAMERDataset(
             io_path="dataset/processed_data/dreamer_de_interpolated_grid",
-            mat_path="dataset/eeg_data/dreamer/DREAMER.mat",
+            mat_path="../../../../EEG/Dataset/DREAMER/DREAMER.mat",
             offline_transform=transforms.Compose(
                 [
                     transforms.BandDifferentialEntropy(),
@@ -462,7 +462,7 @@ def prepare_dataset(
     elif feature_type == "psd_grid":
         deap = DEAPDataset(
             io_path="dataset/processed_data/deap_psd_grid",
-            root_path="dataset/eeg_data/deap/data_preprocessed_python",
+            root_path="../../../../EEG/Dataset/DEAP/data_preprocessed_python",
             offline_transform=transforms.Compose(
                 [
                     transforms.BandPowerSpectralDensity(apply_to_baseline=True),
@@ -486,7 +486,7 @@ def prepare_dataset(
         if class_type == "binary":
             seed = SEEDBinaryDataset(
                 io_path="dataset/processed_data/seed_binary_psd_grid",
-                root_path="dataset/eeg_data/seed/SEED_EEG/Preprocessed_EEG/",
+                root_path="../../../../EEG/Dataset/SEED/SEED/SEED_EEG/Preprocessed_EEG/",
                 offline_transform=transforms.Compose(
                     [
                         transforms.BandPowerSpectralDensity(),
@@ -503,7 +503,7 @@ def prepare_dataset(
         elif class_type == "ternary":
             seed = SEEDDataset(
                 io_path="dataset/processed_data/seed_psd_grid",
-                root_path="dataset/eeg_data/seed/SEED_EEG/Preprocessed_EEG/",
+                root_path="../../../../EEG/Dataset/SEED/SEED/SEED_EEG/Preprocessed_EEG/",
                 offline_transform=transforms.Compose(
                     [
                         transforms.BandPowerSpectralDensity(),
@@ -519,7 +519,7 @@ def prepare_dataset(
 
         dreamer = DREAMERDataset(
             io_path="dataset/processed_data/dreamer_psd_grid",
-            mat_path="dataset/eeg_data/dreamer/DREAMER.mat",
+            mat_path="../../../../EEG/Dataset/DREAMER/DREAMER.mat",
             offline_transform=transforms.Compose(
                 [
                     transforms.BandPowerSpectralDensity(),
@@ -536,7 +536,7 @@ def prepare_dataset(
     elif feature_type == "de_psd_grid":
         deap = DEAPDataset(
             io_path="dataset/processed_data/deap_de_psd_grid",
-            root_path="dataset/eeg_data/deap/data_preprocessed_python",
+            root_path="../../../../EEG/Dataset/DEAP/data_preprocessed_python",
             offline_transform=transforms.Compose(
                 [
                     transforms.Concatenate(
@@ -562,7 +562,7 @@ def prepare_dataset(
         if class_type == "binary":
             seed = SEEDBinaryDataset(
                 io_path="dataset/processed_data/seed_binary_de_psd_grid",
-                root_path="dataset/eeg_data/seed/SEED_EEG/Preprocessed_EEG/",
+                root_path="../../../../EEG/Dataset/SEED/SEED/SEED_EEG/Preprocessed_EEG/",
                 offline_transform=transforms.Compose(
                     [
                         transforms.Concatenate(
@@ -584,7 +584,7 @@ def prepare_dataset(
         elif class_type == "ternary":
             seed = SEEDDataset(
                 io_path="dataset/processed_data/seed_de_psd_grid",
-                root_path="dataset/eeg_data/seed/SEED_EEG/Preprocessed_EEG/",
+                root_path="../../../../EEG/Dataset/SEED/SEED/SEED_EEG/Preprocessed_EEG/",
                 offline_transform=transforms.Compose(
                     [
                         transforms.Concatenate(
@@ -605,7 +605,7 @@ def prepare_dataset(
 
         dreamer = DREAMERDataset(
             io_path="dataset/processed_data/dreamer_de_psd_grid",
-            mat_path="dataset/eeg_data/dreamer/DREAMER.mat",
+            mat_path="../../../../EEG/Dataset/DREAMER/DREAMER.mat",
             offline_transform=transforms.Compose(
                 [
                     transforms.Concatenate(
