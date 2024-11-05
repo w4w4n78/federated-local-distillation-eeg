@@ -1,3 +1,3 @@
 https://github.com/tomytjandra/federated-local-distillation-eeg
 
-WWN akan meng-edit sesuai kebutuhan untuk paper.
+WWN akan meng-edit sesuai kebutuhan untuk paper, fokus pada menurunkan kompleksitas.
