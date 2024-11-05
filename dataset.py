@@ -374,8 +374,8 @@ def prepare_dataset(
             overlap=int(overlap * 128),  # 0, 32, 64, 96
             offline_transform=transforms.Compose(
                 [
-                    transforms.BandDifferentialEntropy(),
-                    transforms.ToGrid(DREAMER_CHANNEL_LOCATION_DICT),
+                    transforms.BandDifferentialEntropy(apply_to_baseline=True),
+                    transforms.ToGrid(DREAMER_CHANNEL_LOCATION_DICT, apply_to_baseline=True),
                 ]
             ),
             online_transform=transforms.ToTensor(),
