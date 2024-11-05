@@ -188,7 +188,7 @@ class BinaryDataset(Dataset):
 
 
 class TernaryDataset(Dataset):
-    def __init__(self, dataset):
+    def __init__(self, dataset, with_subject_id=False):
         self.dataset = dataset
         try:
             self.dataset_name = dataset.dataset.__class__.__name__.lower().replace(
@@ -206,6 +206,8 @@ class TernaryDataset(Dataset):
         elif self.dataset_name == "dreamer":
             self.thresholds = [3, 4]
 
+        self.with_subject_id = with_subject_id
+
     def __len__(self):
         return len(self.dataset)
 
@@ -221,7 +223,10 @@ class TernaryDataset(Dataset):
         subject_ids, valences = y
         processed_y = self.preprocess_y(valences)
 
-        return X, processed_y
+        if self.with_subject_id:
+            return X, processed_y, subject_ids
+        else:
+            return X, processed_y
 
     def preprocess_y(self, y):
         transform = Discretizer(thresholds=self.thresholds)
