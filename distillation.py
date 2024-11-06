@@ -75,8 +75,10 @@ def train_kd(
             optimizer_teacher.zero_grad()
 
         # forward pass for both models
-        teacher_outputs = teacher_model(X_raw)  # Y psi
-        student_outputs = student_model(X_grid)  # Y phi
+        # teacher_outputs = teacher_model(X_raw)  # Y psi
+        # student_outputs = student_model(X_grid)  # Y phi
+        teacher_outputs = teacher_model(X_raw.float())  # Y psi
+        student_outputs = student_model(X_grid.float())  # Y phi
 
         # calculate the hard loss (L_CE)
         loss_teacher_hard = criterion_hard(teacher_outputs, y)  # L_CE psi
@@ -201,8 +203,10 @@ def validate_kd(
             y = y_raw
 
             # forward pass for both models
-            teacher_outputs = teacher_model(X_raw)
-            student_outputs = student_model(X_grid)
+            # teacher_outputs = teacher_model(X_raw)
+            # student_outputs = student_model(X_grid)
+            teacher_outputs = teacher_model(X_raw.float())
+            student_outputs = student_model(X_grid.float())
 
             # loss calculation
             loss_teacher_hard = criterion_hard(teacher_outputs, y)
@@ -282,7 +286,8 @@ def test_model(model, dataloader):
             X, y = X.to(device), y.to(device)
 
             # forward pass
-            outputs = model(X)
+            # model = model(X)
+            outputs = model(X.float())
             
             # calculate loss
             loss = criterion(outputs, y)

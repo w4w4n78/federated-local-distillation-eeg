@@ -305,7 +305,10 @@ def prepare_dataset(
                     transforms.MeanStdNormalize(),
                 ]
             ),
-            online_transform=transforms.ToTensor(),
+            online_transform=transforms.Compose([
+                transforms.ToTensor(), 
+                transforms.BaselineRemoval()
+                ]),
             label_transform=transforms.Compose(
                 [transforms.Select(["subject_id", "valence"])]
             ),
@@ -383,7 +386,10 @@ def prepare_dataset(
                     transforms.ToGrid(DREAMER_CHANNEL_LOCATION_DICT, apply_to_baseline=True),
                 ]
             ),
-            online_transform=transforms.ToTensor(),
+            online_transform=transforms.Compose([
+                transforms.ToTensor(), 
+                transforms.BaselineRemoval()
+                ]),
             label_transform=transforms.Compose(
                 [transforms.Select(["subject_id", "valence"])]
             ),
@@ -457,7 +463,10 @@ def prepare_dataset(
                     transforms.ToInterpolatedGrid(DREAMER_CHANNEL_LOCATION_DICT),
                 ]
             ),
-            online_transform=transforms.ToTensor(),
+            online_transform=transforms.Compose([
+                transforms.ToTensor(), 
+                transforms.BaselineRemoval()
+                ]),
             label_transform=transforms.Compose(
                 [transforms.Select(["subject_id", "valence"])]
             ),
@@ -531,7 +540,10 @@ def prepare_dataset(
                     transforms.ToGrid(DREAMER_CHANNEL_LOCATION_DICT),
                 ]
             ),
-            online_transform=transforms.ToTensor(),
+            online_transform=transforms.Compose([
+                transforms.ToTensor(), 
+                transforms.BaselineRemoval()
+                ]),
             label_transform=transforms.Compose(
                 [transforms.Select(["subject_id", "valence"])]
             ),
@@ -622,7 +634,10 @@ def prepare_dataset(
                     transforms.ToGrid(DREAMER_CHANNEL_LOCATION_DICT),
                 ]
             ),
-            online_transform=transforms.ToTensor(),
+            online_transform=transforms.Compose([
+                transforms.ToTensor(), 
+                transforms.BaselineRemoval()
+                ]),
             label_transform=transforms.Compose(
                 [transforms.Select(["subject_id", "valence"])]
             ),
