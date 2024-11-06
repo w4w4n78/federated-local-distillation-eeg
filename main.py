@@ -6,6 +6,7 @@ import pickle
 from pathlib import Path
 
 # setting environment variables for Ray configuration
+os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
 os.environ["RAY_memory_usage_threshold"] = "0.99"
 # os.environ['RAY_memory_monitor_refresh_ms'] = '0'
 
