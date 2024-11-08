@@ -1,6 +1,6 @@
 from collections import OrderedDict
 from typing import Dict
-from flwr.common import NDArrays, Scalar
+from flwr.common import NDArrays, Scalar, Context
 
 import torch
 import flwr as fl
@@ -211,17 +211,63 @@ class FlowerClient(fl.client.NumPyClient):
 def generate_client_fn(trainloaders, valloaders, testloaders, server_model, seed):
     """Return a function that can be used by the VirtualClientEngine to spawn a FlowerClient with client id `cid`."""
 
-    def client_fn(cid: str):
-        """
-        This function will be called internally by the VirtualClientEngine
-        Each time the cid-th client is told to participate in the FL simulation (whether it is for doing fit() or evaluate())
+    # def client_fn(cid: str):
+    #     """
+    #     This function will be called internally by the VirtualClientEngine
+    #     Each time the cid-th client is told to participate in the FL simulation (whether it is for doing fit() or evaluate())
 
-        Returns a normal FLowerClient that will use the cid-th train/val dataloaders as it's local data.
+    #     Returns a normal FLowerClient that will use the cid-th train/val dataloaders as it's local data.
+    #     """
+    #     return FlowerClient(
+    #         trainloader=trainloaders[int(cid)],
+    #         valloader=valloaders[int(cid)],
+    #         testloader=testloaders[int(cid)],
+    #         server_model=server_model,
+    #         seed=seed,
+    #     ).to_client()
+
+    def client_fn(context: Context):
         """
+        Robust client function that handles different context structures.
+        """
+        # # Print out the context to understand its structure
+        # print("Context type:", type(context))
+        # print("Context contents:", context)
+        # print("Node config:", context.node_config)
+
+        # # Try to extract client ID
+        # try:
+        #     # First, try getting partition-id from node_config
+        #     if isinstance(context.node_config, dict):
+        #         cid = context.node_config.get('partition-id')
+                
+        #         # If partition-id is a string, convert to int
+        #         if cid is not None:
+        #             cid = int(cid)
+        #         else:
+        #             # Fallback to node_id if partition-id is not available
+        #             cid = int(context.node_id % len(trainloaders))
+        #     else:
+        #         # If node_config is not a dict, use node_id
+        #         cid = int(context.node_id % len(trainloaders))
+
+        # except Exception as e:
+        #     print(f"Error extracting client ID: {e}")
+        #     raise ValueError(f"Unable to extract client ID from context: {context}")
+
+        # print(f"Selected client ID: {cid}")
+
+        # # Ensure cid is within the range of available loaders
+        # cid = cid % len(trainloaders)
+
+        cid = context.node_config.get('partition-id')
+        cid = int(cid)
+
+        # Create and return the client
         return FlowerClient(
-            trainloader=trainloaders[int(cid)],
-            valloader=valloaders[int(cid)],
-            testloader=testloaders[int(cid)],
+            trainloader=trainloaders[cid],
+            valloader=valloaders[cid],
+            testloader=testloaders[cid],
             server_model=server_model,
             seed=seed,
         ).to_client()
