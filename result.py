@@ -45,54 +45,54 @@ def print_pickle(path):
     except Exception as e:
         print(f"An error occurred: {e}")
         
-import os
-import tensorflow as tf
-def read_tfevents_file(base_path, metrics):
-    """
-    Find the first tfevents file within the specified base path and collect values for specified metrics.
+# import os
+# import tensorflow as tf
+# def read_tfevents_file(base_path, metrics):
+#     """
+#     Find the first tfevents file within the specified base path and collect values for specified metrics.
     
-    Parameters:
-    - base_path: The base directory to search in for the tfevents file.
-    - metrics: Either a single metric name as a string, or a list of metric names to collect.
+#     Parameters:
+#     - base_path: The base directory to search in for the tfevents file.
+#     - metrics: Either a single metric name as a string, or a list of metric names to collect.
     
-    Returns:
-    - If metrics is a single string, returns a list of values found for that metric.
-    - If metrics is a list of strings, returns a dictionary where each key is a metric and the value is a list of values found for that metric.
-    - Returns None if no tfevents file is found.
-    """
-    # Determine if a single metric or a list of metrics is provided
-    single_metric = isinstance(metrics, str)
-    if single_metric:
-        metrics = [metrics]  # Convert to list for uniform processing
+#     Returns:
+#     - If metrics is a single string, returns a list of values found for that metric.
+#     - If metrics is a list of strings, returns a dictionary where each key is a metric and the value is a list of values found for that metric.
+#     - Returns None if no tfevents file is found.
+#     """
+#     # Determine if a single metric or a list of metrics is provided
+#     single_metric = isinstance(metrics, str)
+#     if single_metric:
+#         metrics = [metrics]  # Convert to list for uniform processing
     
-    # Find the tfevents file
-    tfevents_file_path = None
-    for root, dirs, files in os.walk(base_path):
-        for file in files:
-            if "tfevents" in file:
-                tfevents_file_path = os.path.join(root, file)
-                break
-        if tfevents_file_path:
-            break
+#     # Find the tfevents file
+#     tfevents_file_path = None
+#     for root, dirs, files in os.walk(base_path):
+#         for file in files:
+#             if "tfevents" in file:
+#                 tfevents_file_path = os.path.join(root, file)
+#                 break
+#         if tfevents_file_path:
+#             break
 
-    if not tfevents_file_path:
-        print("No tfevents file found in the specified base path.")
-        return None
+#     if not tfevents_file_path:
+#         print("No tfevents file found in the specified base path.")
+#         return None
 
-    # Initialize storage for metric values
-    metrics_values = {metric: [] for metric in metrics}
+#     # Initialize storage for metric values
+#     metrics_values = {metric: [] for metric in metrics}
     
-    # Read and collect metrics from the tfevents file
-    for e in tf.compat.v1.train.summary_iterator(tfevents_file_path):
-        for v in e.summary.value:
-            if v.tag in metrics and v.HasField('simple_value'):
-                metrics_values[v.tag].append(v.simple_value)
+#     # Read and collect metrics from the tfevents file
+#     for e in tf.compat.v1.train.summary_iterator(tfevents_file_path):
+#         for v in e.summary.value:
+#             if v.tag in metrics and v.HasField('simple_value'):
+#                 metrics_values[v.tag].append(v.simple_value)
     
-    # Return the appropriate format based on input
-    if single_metric:
-        return metrics_values[metrics[0]]  # Return list directly if only one metric was requested
-    else:
-        return metrics_values  # Return dictionary of lists if multiple metrics were requested
+#     # Return the appropriate format based on input
+#     if single_metric:
+#         return metrics_values[metrics[0]]  # Return list directly if only one metric was requested
+#     else:
+#         return metrics_values  # Return dictionary of lists if multiple metrics were requested
 
 # ---------- TABLE RESULT
 

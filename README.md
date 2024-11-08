@@ -72,7 +72,7 @@ Examples:
 
 3. **Running Multiple Experiments** (all combinations):
    ```
-   python main.py seed=1,2,3,4,5 config_fit.mode=offline,online config_fit.temperature=1,5,10 config_fit.alpha=0,0.25,0.5,0.75,1
+   python main.py --multirun seed=1,2,3,4,5 config_fit.mode=offline,online config_fit.temperature=1,5,10 config_fit.alpha=0,0.25,0.5,0.75,1
    ```
 
    *Notes: For complete hyperparameters, see `config/base.yaml`.*
